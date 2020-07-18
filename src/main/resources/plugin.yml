@@ -1,0 +1,11 @@
+name: CampaignReborn
+version: 1.0
+author: Jatatto
+main: me.jwhz.campaignreborn.CampaignReborn
+depend: [ProtocolLib, MythicMobs]
+softdepend: [GPS]
+commands:
+    ckits:
+        aliases: [ckit,campaignkits,campaignkit]
+    campaign:
+        aliases: [campaignreborn, camp, cr]

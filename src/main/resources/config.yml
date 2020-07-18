@@ -1,0 +1,18 @@
+global settings:
+    time to start campaign: 30 #seconds
+    allowed commands in campaign:
+    - 'any commands'
+    lobby:
+        x: 11.0
+        y: 60
+        z: 123.0
+        yaw: 1.0
+        pitch: 1.0
+        world: World
+    spawn:
+        x: -2.524
+        y: 69
+        z: -27.443
+        yaw: 0.0
+        pitch: 0.0
+        world: World

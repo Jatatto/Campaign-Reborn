@@ -1,0 +1,143 @@
+settings:
+    separate inventory: true
+    keep mission inventory: true
+    starting phase: first
+    replayable: true
+    lobby:
+        minimum players: 1
+        maximum players: 2
+
+phases:
+    first:
+        goals:
+            CollectItem:
+                type: COLLECT_ITEMS
+                item: 'item:STONE amount:8'
+                complete message: #OPTIONAL
+                - '&aCollected 8 stone goal complete.'
+            ClickBlock:
+                type: INTERACT_WITH_BLOCK
+                complete message: #OPTIONAL
+                - '&aYou have clicked a block and completed this goal.'
+                location:
+                    x: -11
+                    y: 78
+                    z: -26
+                    world: World
+            KillRoom:
+                type: KILL_BOSS
+                mob name: 'SkeletalMinion'
+                start message:
+                - '&aThe boss has spawned.'
+                complete message:
+                - '&aYou have finished killing the boss.'
+                location:
+                    x: -14.447
+                    y: 77
+                    z: -27.426
+                    yaw: -178.5
+                    pitch: 5.4
+                    world: World
+        onStart:
+            SetKit:
+                type: SET_KIT
+                kit: FirstKit
+            TeleportToStart:
+                type: TELEPORT_GROUP
+                location:
+                    x: -14.415
+                    y: 77.0
+                    z: -37.409
+                    yaw: -0.8
+                    pitch: 62.9
+                    world: World
+            SetRespawn:
+                type: SET_RESPAWN
+                location:
+                    x: -14.415
+                    y: 77.0
+                    z: -37.409
+                    yaw: -0.8
+                    pitch: 62.9
+                    world: World
+            WelcomePrompt:
+                type: MESSAGE_GROUP
+                prompt:
+                - '&8&m--------------------------------------'
+                - '&aWelcome to the tutorial.'
+        onSuccess:
+            SuccessPrompt:
+                type: MESSAGE_GROUP
+                prompt:
+                - '&8&m--------------------------------------'
+                - 'Congratulations, you completed phase 1!'
+            StartNextPhase:
+                type: START_NEW_PHASE
+                phase: second
+            PayMoney:
+                type: REWARD_GROUP
+                rewards:
+                - 'eco give %player% 10'
+    # END OF FIRST PHASE
+    second:
+        goals:
+            ClickBlock:
+                type: INTERACT_WITH_BLOCK
+                location:
+                    x: 1
+                    y: 78
+                    z: -28
+                    world: World
+        onStart:
+            MessageGroup:
+                type: MESSAGE_GROUP
+                prompt:
+                - '&8&m--------------------------------------'
+                - '&aGo along and click the block with a sign on it.'
+        onSuccess:
+            StartPhaseThree:
+                type: START_NEW_PHASE
+                phase: three
+    # END OF SECOND PHASE
+    three:
+        goals:
+            ReachPoint:
+                type: REACH_LOCATION
+                location:
+                    x: -6
+                    y: 81
+                    z: -36
+                    world: World
+                radius: 3
+        onStart:
+            MessageGroup:
+                type: MESSAGE_GROUP
+                prompt:
+                - '&8&m--------------------------------------'
+                - '&aFollow the lapis block path and stand'
+                - '&anear the sign on top of the glowstone block.'
+        onSuccess:
+            SuccessPrompt:
+                type: MESSAGE_GROUP
+                prompt:
+                - '&8&m--------------------------------------'
+                - '&aYou have finished the campaign.'
+                - '&aYou will be teleported back to spawn shortly...'
+            GiveRewards:
+                type: REWARD_GROUP
+                rewards:
+                - 'eco give %player% 1231'
+                - 'give %player% diamond 2'
+            TeleportToStart:
+                type: TELEPORT_GROUP
+                delay: 100 #5 seconds
+                complete message: #optional
+                - '&aYou have been teleported to spawn'
+                - '&8&m--------------------------------------'
+                location:
+                    x: -2.524
+                    y: 69
+                    z: -27.443
+                    yaw: 0.0
+                    pitch: 0.0
+                    world: World
